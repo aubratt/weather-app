@@ -1,3 +1,222 @@
+/* Josh's Custom CSS Reset https://www.joshwcomeau.com/css/custom-css-reset/ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
 body {
-  background-color: #121212;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Weather */
+:root {
+  /** Base colors */
+  --clr-dark-a0: #000000;
+  --clr-dim-a0: #d3d3d3;
+  --clr-light-a0: #ffffff;
+
+  /** Theme primary colors */
+  --clr-primary-a0: #00abeb;
+  --clr-primary-a10: #48b4ed;
+  --clr-primary-a20: #69bdf0;
+  --clr-primary-a30: #83c7f2;
+  --clr-primary-a40: #9ad0f4;
+  --clr-primary-a50: #b0d9f7;
+
+  /** Theme surface colors */
+  --clr-surface-a0: #121212;
+  --clr-surface-a10: #282828;
+  --clr-surface-a20: #3f3f3f;
+  --clr-surface-a30: #575757;
+  --clr-surface-a40: #717171;
+  --clr-surface-a50: #8b8b8b;
+
+  /** Success colors */
+  --clr-success-a0: #22946e;
+  --clr-success-a10: #47d5a6;
+  --clr-success-a20: #9ae8ce;
+
+  /** Warning colors */
+  --clr-warning-a0: #a87a2a;
+  --clr-warning-a10: #d7ac61;
+  --clr-warning-a20: #ecd7b2;
+
+  /** Danger colors */
+  --clr-danger-a0: #9c2121;
+  --clr-danger-a10: #d94a4a;
+  --clr-danger-a20: #eb9e9e;
+
+  /** Info colors */
+  --clr-info-a0: #21498a;
+  --clr-info-a10: #4077d1;
+  --clr-info-a20: #92b2e5;
+}
+
+body {
+  background-color: var(--clr-surface-a0);
+  color: var(--clr-light-a0);
+  font-family: sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
+#search-form-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+#search-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#city {
+  all: unset;
+  background-color: var(--clr-surface-a10);
+  border-radius: 4px;
+  width: 300px;
+  padding: 4px 8px;
+}
+
+#suggestions-container {
+  background-color: var(--clr-surface-a10);
+  border-radius: 4px;
+}
+
+.suggestion-item-container {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-bottom: 1px solid var(--clr-dim-a0);
+  padding: 4px 8px;
+}
+
+#suggestions-container :last-child {
+  border-bottom: 0px solid var(--clr-dim-a0);
+}
+
+.suggestion-item-container:hover {
+  background-color: var(--clr-surface-a20);
+}
+
+#suggestions-container :first-child:hover {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+#suggestions-container :last-child:hover {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.region-and-country {
+  color: var(--clr-dim-a0);
+  font-size: 14px;
+}
+
+#search-btn {
+  all: unset;
+  align-self: start;
+  cursor: pointer;
+  background-color: var(--clr-primary-a10);
+  color: var(--clr-dark-a0);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+#search-btn:hover {
+  background-color: var(--clr-primary-a20);
+}
+
+#current-conditions-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#current-location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#current-city {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+#current-region-and-country {
+  color: var(--clr-dim-a0);
+  font-size: 14px;
+  line-height: 14px;
+}
+
+#current-temp {
+  font-size: 64px;
+  line-height: 64px;
+  margin-left: 24px;
+}
+
+#daily-low-high-container {
+  display: flex;
+  gap: 8px;
 }
