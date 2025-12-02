@@ -218,40 +218,49 @@ header {
 }
 
 /* CURRENT WEATHER */
-#current-conditions-container {
+#current-weather-container {
+  display: grid;
+  grid-template: 36px repeat(3, 64px) / repeat(2, 1fr) 2fr;
+  grid-template-areas:
+    "header header header"
+    "temp conditions sun"
+    "temp conditions low-high"
+    "temp conditions humidity-wind";
+  border: 1px solid var(--clr-light-a0);
+  border-radius: 8px;
+}
+
+#current-weather-header-container {
+  grid-area: header;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--clr-light-a0);
+  font-weight: bold;
+  padding: 0 12px;
 }
 
-#current-location-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#current-city {
-  font-size: 20px;
-  line-height: 20px;
-}
-
-#current-region-and-country {
-  color: var(--clr-dim-a0);
+#current-weather-heading,
+#current-weather-city {
   font-size: 14px;
-  line-height: 14px;
 }
 
-#current-temp {
-  font-size: 64px;
-  line-height: 64px;
-  margin-left: 24px;
+#current-weather-temp-container {
+  grid-area: temp;
 }
 
-#current-conditions {
-  line-height: 16px;
+#current-weather-conditions-container {
+  grid-area: conditions;
 }
 
-#daily-low-high-container {
-  display: flex;
-  gap: 8px;
+#current-weather-sun-container {
+  grid-area: sun;
+}
+
+#current-weather-low-high-container {
+  grid-area: low-high;
+}
+
+#current-weather-humidity-wind {
+  grid-area: humidity-wind;
 }

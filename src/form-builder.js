@@ -6,12 +6,6 @@ const city = document.getElementById("city");
 const searchBarContainer = document.getElementById("search-bar-container");
 const loading = document.getElementById("loading");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const searchValue = getCityInputValue();
-  displayWeather(searchValue);
-});
-
 let debounceTimeout;
 city.addEventListener("input", handleUserInteraction);
 city.addEventListener("focus", handleUserInteraction);
@@ -20,7 +14,6 @@ city.addEventListener("click", handleUserInteraction);
 window.addEventListener("click", (event) => {
   if (event.target !== searchBarContainer) {
     clearCurrentSuggestions();
-    hideLoadingAnimation();
   }
 });
 
@@ -33,7 +26,6 @@ function handleUserInteraction() {
       displayCitiesSuggestions();
     } else {
       clearCurrentSuggestions();
-      hideLoadingAnimation();
     }
   }, 2000);
 }
@@ -63,17 +55,49 @@ export async function processWeatherData(searchValue) {
   const days = weatherData.days;
   const hours = days[0].hours.concat(days[1].hours);
 
-  const weatherObj = {
+  const currentWeather = {
     temp: Math.round(currentConditions.temp),
+    feelsLike: Math.round(currentConditions.feelslike),
+    conditionsIcon: currentConditions.icon,
     conditions: currentConditions.conditions,
-    dailyLow: Math.round(days[0].tempmin),
-    dailyHigh: Math.round(days[0].tempmax),
-    hours: hours,
-    days: days,
+    sunrise: currentConditions.sunrise,
+    sunset: currentConditions.sunset,
+    low: Math.round(days[0].tempmin),
+    high: Math.round(days[0].tempmax),
+    humidity: Math.round(currentConditions.humidity),
+    windDirection: currentConditions.windDirection,
+    windSpeed: currentConditions.windSpeed,
   };
 
-  console.log(weatherObj);
-  return weatherObj;
+  const hourlyWeather = [];
+
+  const tenDayWeather = [];
+
+  // Populate hourly weather array
+  for (let i = 0; i < hours.length; i++) {
+    const hour = {
+      temp: hours[i].temp,
+      conditionsIcon: hours[i].icon,
+      precipType: hours[i].preciptype,
+      precipProb: Math.round(hours[i].precipprob),
+    };
+    hourlyWeather.push(hour);
+  }
+
+  // Populate ten day weather array
+  for (let i = 0; i < 10; i++) {
+    const day = {
+      conditionsIcon: days[i].icon,
+      dailyLow: Math.round(days[i].tempmin),
+      dailyHigh: Math.round(days[i].tempmax),
+      description: days[i].description,
+      precipType: days[i].preciptype,
+      precipProb: days[i].precipprob,
+    };
+    tenDayWeather.push(day);
+  }
+
+  return { currentWeather, hourlyWeather, tenDayWeather };
 }
 
 async function getCitiesData() {
@@ -120,23 +144,29 @@ async function displayCitiesSuggestions() {
     suggestionsContainer.appendChild(noCitiesFoundContainer);
   } else {
     for (let i = 0; i < citiesArray.length; i++) {
-      const city = citiesArray[i].city;
-      const region = citiesArray[i].region;
-      const country = citiesArray[i].country;
+      const cityData = {
+        city: citiesArray[i].city,
+        country: citiesArray[i].country,
+        latitude: citiesArray[i].latitude,
+        longitude: citiesArray[i].longitude,
+        region: citiesArray[i].region,
+        regionCode: citiesArray[i].regionCode,
+      };
+
       const suggestionItemContainer = element.createSuggestionItemContainer();
       const suggestionItemCity = element.createSuggestionItemCity();
       const suggestionItemRegionAndCountry =
         element.createSuggestionItemRegionAndCountry();
 
-      suggestionItemCity.textContent = city;
-      suggestionItemRegionAndCountry.textContent = `${region}, ${country}`;
+      suggestionItemCity.textContent = cityData.city;
+      suggestionItemRegionAndCountry.textContent = `${cityData.region}, ${cityData.country}`;
 
       suggestionsContainer.appendChild(suggestionItemContainer);
 
       suggestionItemContainer.appendChild(suggestionItemCity);
       suggestionItemContainer.appendChild(suggestionItemRegionAndCountry);
 
-      attachSuggestionListener(suggestionItemContainer, city, region, country);
+      attachSuggestionListener(suggestionItemContainer, cityData);
     }
   }
 
@@ -156,17 +186,11 @@ function clearCurrentSuggestions() {
   return;
 }
 
-function attachSuggestionListener(
-  suggestionItemContainer,
-  city,
-  region,
-  country
-) {
-  const cityAndRegion = city + region;
-  const searchValue = cityAndRegion.replace(/\s+/g, "");
+function attachSuggestionListener(suggestionItemContainer, cityData) {
+  const searchValue = `${cityData.latitude}, ${cityData.longitude}`;
 
   suggestionItemContainer.addEventListener("click", () => {
-    displayWeather(searchValue, city, region, country);
+    displayWeather(searchValue, cityData);
   });
 }
 

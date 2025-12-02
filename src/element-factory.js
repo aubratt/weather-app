@@ -29,58 +29,132 @@ export function createNoCitiesFoundContainer() {
   return noCitiesFoundContainer;
 }
 
-export function createCurrentConditionsContainer() {
-  const currentConditionsContainer = document.createElement("div");
-  currentConditionsContainer.id = "current-conditions-container";
-  return currentConditionsContainer;
+// Current Weather
+export function createCurrentWeatherContainer() {
+  const currentWeatherContainer = document.createElement("div");
+  currentWeatherContainer.id = "current-weather-container";
+  return currentWeatherContainer;
 }
 
-export function createCurrentLocationContainer() {
-  const currentLocationContainer = document.createElement("div");
-  currentLocationContainer.id = "current-location-container";
-  return currentLocationContainer;
+export function createCurrentWeatherHeaderContainer() {
+  const currentWeatherHeaderContainer = document.createElement("div");
+  currentWeatherHeaderContainer.id = "current-weather-header-container";
+  return currentWeatherHeaderContainer;
 }
 
-export function createCurrentCity() {
-  const currentCity = document.createElement("p");
-  currentCity.id = "current-city";
-  return currentCity;
+export function createCurrentWeatherHeading() {
+  const currentWeatherHeading = document.createElement("h2");
+  currentWeatherHeading.id = "current-weather-heading";
+  return currentWeatherHeading;
 }
 
-export function createCurrentRegionAndCountry() {
-  const currentRegionAndCountry = document.createElement("p");
-  currentRegionAndCountry.id = "current-region-and-country";
-  return currentRegionAndCountry;
+export function createCurrentWeatherLocationContainer() {
+  const currentWeatherLocationContainer = document.createElement("div");
+  currentWeatherLocationContainer.id = "current-weather-location-container";
+  return currentWeatherLocationContainer;
 }
 
-export function createCurrentTemp() {
-  const currentTemp = document.createElement("p");
-  currentTemp.id = "current-temp";
-  return currentTemp;
+export function createCurrentWeatherCity() {
+  const currentWeatherCity = document.createElement("p");
+  currentWeatherCity.id = "current-weather-city";
+  return currentWeatherCity;
 }
 
-export function createCurrentConditions() {
-  const currentConditions = document.createElement("p");
-  currentConditions.id = "current-conditions";
-  return currentConditions;
+export function createCurrentWeatherRegionCountry() {
+  const currentWeatherRegionCountry = document.createElement("p");
+  currentWeatherRegionCountry.id = "current-weather-region-country";
+  return currentWeatherRegionCountry;
 }
 
-export function createDailyLowHighContainer() {
-  const dailyLowHighContainer = document.createElement("div");
-  dailyLowHighContainer.id = "daily-low-high-container";
-  return dailyLowHighContainer;
+export function createCurrentWeatherTempContainer() {
+  const currentWeatherTempContainer = document.createElement("div");
+  currentWeatherTempContainer.id = "current-weather-temp-container";
+  return currentWeatherTempContainer;
 }
 
-export function createDailyLow() {
-  const dailyLow = document.createElement("p");
-  dailyLow.id = "daily-low";
-  return dailyLow;
+export function createCurrentWeatherTemp() {
+  const currentWeatherTemp = document.createElement("p");
+  currentWeatherTemp.id = "current-weather-temp";
+  return currentWeatherTemp;
 }
 
-export function createDailyHigh() {
-  const dailyHigh = document.createElement("p");
-  dailyHigh.id = "daily-high";
-  return dailyHigh;
+export function createCurrentWeatherFeelsLike() {
+  const currentWeatherFeelsLike = document.createElement("p");
+  currentWeatherFeelsLike.id = "current-weather-feels-like";
+  return currentWeatherFeelsLike;
+}
+
+export function createCurrentWeatherConditionsContainer() {
+  const currentWeatherConditionsContainer = document.createElement("div");
+  currentWeatherConditionsContainer.id = "current-weather-conditions-container";
+  return currentWeatherConditionsContainer;
+}
+
+export function createCurrentWeatherConditionsIcon() {
+  const currentWeatherConditionsIcon = document.createElement("img");
+  currentWeatherConditionsIcon.id = "current-weather-conditions-icon";
+  return currentWeatherConditionsIcon;
+}
+
+export function createCurrentWeatherConditionsText() {
+  const currentWeatherConditionsText = document.createElement("p");
+  currentWeatherConditionsText.id = "current-weather-conditions-text";
+  return currentWeatherConditionsText;
+}
+
+export function createCurrentWeatherSunContainer() {
+  const currentWeatherSunContainer = document.createElement("div");
+  currentWeatherSunContainer.id = "current-weather-sun-container";
+  return currentWeatherSunContainer;
+}
+
+export function createCurrentWeatherSunrise() {
+  const currentWeatherSunrise = document.createElement("p");
+  currentWeatherSunrise.id = "current-weather-sunrise";
+  return currentWeatherSunrise;
+}
+
+export function createCurrentWeatherSunset() {
+  const currentWeatherSunset = document.createElement("p");
+  currentWeatherSunset.id = "current-weather-sunset";
+  return currentWeatherSunset;
+}
+
+export function createCurrentWeatherLowHighContainer() {
+  const currentWeatherLowHighContainer = document.createElement("div");
+  currentWeatherLowHighContainer.id = "current-weather-low-high-container";
+  return currentWeatherLowHighContainer;
+}
+
+export function createCurrentWeatherLow() {
+  const currentWeatherLow = document.createElement("p");
+  currentWeatherLow.id = "current-weather-low";
+  return currentWeatherLow;
+}
+
+export function createCurrentWeatherHigh() {
+  const currentWeatherHigh = document.createElement("p");
+  currentWeatherHigh.id = "current-weather-high";
+  return currentWeatherHigh;
+}
+
+export function createCurrentWeatherHumidityWindContainer() {
+  const currentWeatherHumidityWindContainer = document.createElement("div");
+  currentWeatherHumidityWindContainer.id =
+    "current-weather-humidity-wind-container";
+  return currentWeatherHumidityWindContainer;
+}
+
+export function createCurrentWeatherHumidity() {
+  const currentWeatherHumidity = document.createElement("p");
+  currentWeatherHumidity.id = "current-weather-humidity";
+  return currentWeatherHumidity;
+}
+
+export function createCurrentWeatherWind() {
+  const currentWeatherWind = document.createElement("p");
+  currentWeatherWind.id = "current-weather-wind";
+  return currentWeatherWind;
 }
 
 // Hourly Forecast
