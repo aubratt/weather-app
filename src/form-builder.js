@@ -4,6 +4,7 @@ import { displayWeather } from "./page-builder.js";
 const form = document.getElementById("search-form");
 const city = document.getElementById("city");
 const searchBarContainer = document.getElementById("search-bar-container");
+const loading = document.getElementById("loading");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -12,26 +13,33 @@ form.addEventListener("submit", (event) => {
 });
 
 let debounceTimeout;
-city.addEventListener("input", () => {
-  clearTimeout(debounceTimeout);
-
-  debounceTimeout = setTimeout(async () => {
-    const query = city.value.trim();
-    if (query.length > 3) {
-      displayCitiesSuggestions();
-    }
-  }, 2000);
-});
+city.addEventListener("input", handleUserInteraction);
+city.addEventListener("focus", handleUserInteraction);
+city.addEventListener("click", handleUserInteraction);
 
 window.addEventListener("click", (event) => {
   if (event.target !== searchBarContainer) {
     clearCurrentSuggestions();
+    hideLoadingAnimation();
   }
 });
 
+function handleUserInteraction() {
+  showLoadingAnimation();
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(async () => {
+    const query = city.value.trim();
+    if (query.length > 0) {
+      displayCitiesSuggestions();
+    } else {
+      clearCurrentSuggestions();
+      hideLoadingAnimation();
+    }
+  }, 2000);
+}
+
 function getCityInputValue() {
-  const cityInputValue = city.value;
-  return cityInputValue;
+  return city.value;
 }
 
 async function getWeatherData(searchValue) {
@@ -105,27 +113,37 @@ async function displayCitiesSuggestions() {
   const citiesArray = await processCitiesData();
   const suggestionsContainer = element.createSuggestionsContainer();
 
-  for (let i = 0; i < citiesArray.length; i++) {
-    const city = citiesArray[i].city;
-    const region = citiesArray[i].region;
-    const country = citiesArray[i].country;
-    const suggestionItemContainer = element.createSuggestionItemContainer();
-    const suggestionItemCity = element.createSuggestionItemCity();
-    const suggestionItemRegionAndCountry =
-      element.createSuggestionItemRegionAndCountry();
+  if (citiesArray.length == 0) {
+    const noCitiesFoundContainer = element.createNoCitiesFoundContainer();
+    noCitiesFoundContainer.textContent = "No cities found.";
 
-    suggestionItemCity.textContent = city;
-    suggestionItemRegionAndCountry.textContent = `${region}, ${country}`;
+    suggestionsContainer.appendChild(noCitiesFoundContainer);
+  } else {
+    for (let i = 0; i < citiesArray.length; i++) {
+      const city = citiesArray[i].city;
+      const region = citiesArray[i].region;
+      const country = citiesArray[i].country;
+      const suggestionItemContainer = element.createSuggestionItemContainer();
+      const suggestionItemCity = element.createSuggestionItemCity();
+      const suggestionItemRegionAndCountry =
+        element.createSuggestionItemRegionAndCountry();
 
-    suggestionsContainer.appendChild(suggestionItemContainer);
+      suggestionItemCity.textContent = city;
+      suggestionItemRegionAndCountry.textContent = `${region}, ${country}`;
 
-    suggestionItemContainer.appendChild(suggestionItemCity);
-    suggestionItemContainer.appendChild(suggestionItemRegionAndCountry);
+      suggestionsContainer.appendChild(suggestionItemContainer);
 
-    attachSuggestionListener(suggestionItemContainer, city, region, country);
+      suggestionItemContainer.appendChild(suggestionItemCity);
+      suggestionItemContainer.appendChild(suggestionItemRegionAndCountry);
+
+      attachSuggestionListener(suggestionItemContainer, city, region, country);
+    }
   }
 
   searchBarContainer.appendChild(suggestionsContainer);
+
+  hideLoadingAnimation();
+
   return;
 }
 
@@ -134,6 +152,7 @@ function clearCurrentSuggestions() {
   if (suggestionsContainer) {
     searchBarContainer.removeChild(suggestionsContainer);
   }
+
   return;
 }
 
@@ -149,4 +168,12 @@ function attachSuggestionListener(
   suggestionItemContainer.addEventListener("click", () => {
     displayWeather(searchValue, city, region, country);
   });
+}
+
+export function showLoadingAnimation() {
+  loading.style.display = "block";
+}
+
+export function hideLoadingAnimation() {
+  loading.style.display = "none";
 }

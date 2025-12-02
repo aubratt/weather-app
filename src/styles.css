@@ -63,7 +63,7 @@ h6 {
   isolation: isolate;
 }
 
-/* Weather */
+/* WEATHER APP */
 :root {
   /** Base colors */
   --clr-dark-a0: #000000;
@@ -108,38 +108,55 @@ h6 {
 }
 
 body {
+  display: flex;
+  justify-content: center;
   background-color: var(--clr-surface-a0);
   color: var(--clr-light-a0);
   font-family: sans-serif;
 }
 
-header {
-  text-align: center;
+#main-container {
+  width: 800px;
 }
 
-#search-form-container {
+/* #main-container > * {
+  border: 1px solid var(--clr-primary-a0);
+} */
+
+/* HEADER */
+header {
   display: flex;
-  justify-content: center;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #search-bar-container {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  background-color: var(--clr-surface-a10);
+  border-radius: 4px;
+  width: 400px;
+  padding: 4px 8px;
 }
 
 #city {
   all: unset;
   background-color: var(--clr-surface-a10);
-  border-radius: 4px;
-  width: 300px;
-  padding: 4px 8px;
+  width: 100%;
+}
+
+#loading {
+  display: none;
+  width: 24px;
+  height: 24px;
 }
 
 #suggestions-container {
+  position: absolute;
+  top: 48px;
+  right: calc(50% - 254px);
   background-color: var(--clr-surface-a10);
   border-radius: 4px;
+  width: 400px;
 }
 
 .suggestion-item-container {
@@ -173,20 +190,34 @@ header {
   font-size: 14px;
 }
 
-#search-btn {
-  all: unset;
-  align-self: start;
-  cursor: pointer;
-  background-color: var(--clr-primary-a10);
-  color: var(--clr-dark-a0);
-  border-radius: 4px;
+.no-cities-found-container {
   padding: 4px 8px;
 }
 
-#search-btn:hover {
-  background-color: var(--clr-primary-a20);
+#toggle-degree {
+  justify-self: end;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  cursor: pointer;
+  border: 1px solid var(--clr-light-a0);
+  border-radius: 4px;
 }
 
+#f,
+#c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 30px;
+}
+
+.active-degree {
+  background-color: var(--clr-light-a0);
+  color: var(--clr-dark-a0);
+}
+
+/* CURRENT WEATHER */
 #current-conditions-container {
   display: flex;
   align-items: center;
@@ -214,6 +245,10 @@ header {
   font-size: 64px;
   line-height: 64px;
   margin-left: 24px;
+}
+
+#current-conditions {
+  line-height: 16px;
 }
 
 #daily-low-high-container {

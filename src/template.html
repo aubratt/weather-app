@@ -6,17 +6,26 @@
     <title>Weather</title>
   </head>
   <body>
-    <header>
-      <h1>Weather</h1>
-    </header>
-    <form action="#" id="search-form">
-      <div id="search-form-container">
-        <div id="search-bar-container">
-          <input type="text" id="city" placeholder="City" />
+    <div id="main-container">
+      <header>
+        <h1>theWeather</h1>
+        <form action="#" id="search-form">
+          <div id="search-form-container">
+            <div id="search-bar-container">
+              <input type="text" id="city" placeholder="Search City" />
+              <img id="loading" src="loading.gif" alt="">
+            </div>
+          </div>
+        </form>
+        <div id="toggle-degree">
+          <div id="f" class="active-degree">F</div>
+          <div id="c">C</div>
         </div>
-        <button type="submit" id="search-btn">Search</button>
-      </div>
-    </form>
-    <div id="content"></div>
+      </header>
+      <div id="current-weather">current weather</div>
+      <div id="hourly-weather">hourly weather</div>
+      <div id="ten-day-weather">10-day weather</div>
+      <footer></footer>
+    </div>
   </body>
 </html>

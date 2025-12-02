@@ -1,14 +1,4 @@
-import {
-  createCurrentCity,
-  createCurrentConditions,
-  createCurrentConditionsContainer,
-  createCurrentLocationContainer,
-  createCurrentRegionAndCountry,
-  createCurrentTemp,
-  createDailyHigh,
-  createDailyLow,
-  createDailyLowHighContainer,
-} from "./element-factory";
+import * as element from "./element-factory.js";
 import { processWeatherData } from "./form-builder";
 
 const content = document.getElementById("content");
@@ -16,6 +6,8 @@ const content = document.getElementById("content");
 const degreeSymbol = "°";
 
 export async function displayWeather(searchValue, city, region, country) {
+  clearContent();
+
   const weatherObj = await processWeatherData(searchValue);
   displayCurrentConditions(
     weatherObj.temp,
@@ -28,6 +20,12 @@ export async function displayWeather(searchValue, city, region, country) {
   );
   displayHourlyForecast(weatherObj.hours);
   displayTenDayForecast(weatherObj.days);
+}
+
+function clearContent() {
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
+  }
 }
 
 // CURRENT CONDITIONS
@@ -85,7 +83,16 @@ function displayCurrentConditions(
 // moon icons...include rain percentage if nec.)
 // Temp
 
-function displayHourlyForecast(hours) {}
+function displayHourlyForecast(hours) {
+  const hourlyForecastContainer = createHourlyForecastContainer();
+  const hourlyForecastHeading = createHourlyForecastHeading();
+
+  hourlyForecastHeading.textContent = "Hourly Forecast";
+
+  content.appendChild(hourlyForecastContainer);
+
+  hourlyForecastContainer.appendChild(hourlyForecastHeading);
+}
 
 // 10-DAY FORECAST
 // Weekday (i.e. Today, Wed, Thu)
