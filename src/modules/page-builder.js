@@ -1,5 +1,5 @@
-import * as element from "./element-factory.js";
-import { processWeatherData } from "./form-builder";
+import * as element from "../modules/element-factory";
+import { processWeatherData } from "../modules/form-builder";
 
 const mainContainer = document.getElementById("main-container");
 
@@ -42,8 +42,8 @@ function displayCurrentWeather(currentWeather, cityData) {
 
   heading.textContent = "CURRENT WEATHER";
   cityEl.textContent = `${cityData.city.toUpperCase()}, ${cityData.regionCode}`;
-  temp.textContent = currentWeather.temp;
-  feelsLike.textContent = currentWeather.feelsLike;
+  temp.textContent = currentWeather.temp + degreeSymbol;
+  feelsLike.textContent = `feelsLike ${currentWeather.feelsLike}${degreeSymbol}`;
   conditionsText.textContent = currentWeather.conditions;
   sunrise.textContent = currentWeather.sunrise;
   sunset.textContent = currentWeather.sunset;

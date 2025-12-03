@@ -247,6 +247,19 @@ header {
 
 #current-weather-temp-container {
   grid-area: temp;
+  display: grid;
+  grid-template-rows: 116px 76px;
+}
+
+#current-weather-temp {
+  align-self: end;
+  justify-self: center;
+  font-size: 64px;
+  line-height: 64px;
+}
+
+#current-weather-feels-like {
+  justify-self: center;
 }
 
 #current-weather-conditions-container {

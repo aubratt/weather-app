@@ -48,22 +48,10 @@ export function createCurrentWeatherHeading() {
   return currentWeatherHeading;
 }
 
-export function createCurrentWeatherLocationContainer() {
-  const currentWeatherLocationContainer = document.createElement("div");
-  currentWeatherLocationContainer.id = "current-weather-location-container";
-  return currentWeatherLocationContainer;
-}
-
 export function createCurrentWeatherCity() {
   const currentWeatherCity = document.createElement("p");
   currentWeatherCity.id = "current-weather-city";
   return currentWeatherCity;
-}
-
-export function createCurrentWeatherRegionCountry() {
-  const currentWeatherRegionCountry = document.createElement("p");
-  currentWeatherRegionCountry.id = "current-weather-region-country";
-  return currentWeatherRegionCountry;
 }
 
 export function createCurrentWeatherTempContainer() {

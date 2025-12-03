@@ -1,6 +1,6 @@
 import "./styles.css";
-import "./form-builder.js";
-import { displayWeather } from "./page-builder.js";
+import "./modules/form-builder.js";
+import { displayWeather } from "./modules/page-builder.js";
 
 const cityData = {
   city: "New York City",

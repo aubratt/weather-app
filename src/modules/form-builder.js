@@ -1,5 +1,5 @@
-import * as element from "./element-factory.js";
-import { displayWeather } from "./page-builder.js";
+import * as element from "../modules/element-factory.js";
+import { displayWeather } from "../modules/page-builder.js";
 
 const form = document.getElementById("search-form");
 const city = document.getElementById("city");
