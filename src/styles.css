@@ -133,6 +133,7 @@ header {
 #search-bar-container {
   display: flex;
   background-color: var(--clr-surface-a10);
+  border: 1px solid var(--clr-surface-a30);
   border-radius: 4px;
   width: 400px;
   padding: 4px 8px;
@@ -152,18 +153,22 @@ header {
 
 #suggestions-container {
   position: absolute;
-  top: 48px;
+  top: 40px;
   right: calc(50% - 254px);
   background-color: var(--clr-surface-a10);
-  border-radius: 4px;
+  border: 1px solid var(--clr-surface-a30);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
   width: 400px;
+  z-index: 2;
 }
 
 .suggestion-item-container {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  border-bottom: 1px solid var(--clr-dim-a0);
+  border-bottom: 1px solid var(--clr-surface-a30);
   padding: 4px 8px;
 }
 
@@ -175,10 +180,10 @@ header {
   background-color: var(--clr-surface-a20);
 }
 
-#suggestions-container :first-child:hover {
+/* #suggestions-container :first-child:hover {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-}
+} */
 
 #suggestions-container :last-child:hover {
   border-bottom-left-radius: 4px;
@@ -226,7 +231,8 @@ header {
     "temp conditions sun"
     "temp conditions low-high"
     "temp conditions humidity-wind";
-  border: 1px solid var(--clr-light-a0);
+  background-color: var(--clr-surface-a10);
+  border: 1px solid var(--clr-surface-a30);
   border-radius: 8px;
 }
 
@@ -235,9 +241,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--clr-light-a0);
+  border-bottom: 1px solid var(--clr-surface-a30);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   font-weight: bold;
-  padding: 0 12px;
+  margin: 0 12px;
 }
 
 #current-weather-heading,
@@ -282,6 +290,11 @@ header {
   padding-top: 32px;
 }
 
+#current-weather-conditions-text {
+  text-align: center;
+  width: 96px;
+}
+
 #current-weather-sun-container {
   grid-area: sun;
   display: grid;
@@ -315,4 +328,3 @@ header {
   grid-template-columns: repeat(2, 1fr);
   padding-top: 10px;
 }
-

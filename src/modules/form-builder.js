@@ -1,10 +1,14 @@
 import * as element from "../modules/element-factory.js";
 import { displayWeather } from "../modules/page-builder.js";
 
+// TODO Change temperature type button to a dropdown with various
+// types of temperature measurement (F, C, K, R, etc.)
+
 const form = document.getElementById("search-form");
 const city = document.getElementById("city");
 const searchBarContainer = document.getElementById("search-bar-container");
 const loading = document.getElementById("loading");
+const suggestionsContainer = document.getElementById("suggestions-container");
 
 let debounceTimeout;
 city.addEventListener("input", handleUserInteraction);
@@ -12,8 +16,9 @@ city.addEventListener("focus", handleUserInteraction);
 city.addEventListener("click", handleUserInteraction);
 
 window.addEventListener("click", (event) => {
-  if (event.target !== searchBarContainer) {
+  if (event.target !== searchBarContainer && event.target !== city) {
     clearCurrentSuggestions();
+    hideLoadingAnimation();
   }
 });
 
@@ -22,9 +27,11 @@ function handleUserInteraction() {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(async () => {
     const query = city.value.trim();
-    if (query.length > 0) {
+    if (query.length > 1) {
+      console.log("hello");
       displayCitiesSuggestions();
     } else {
+      console.log("wow");
       clearCurrentSuggestions();
     }
   }, 2000);
@@ -160,6 +167,7 @@ async function processCitiesData() {
 
 async function displayCitiesSuggestions() {
   clearCurrentSuggestions();
+  removeSearchBarRoundedBottomBorder();
 
   const citiesArray = await processCitiesData();
   const suggestionsContainer = element.createSuggestionsContainer();
@@ -205,9 +213,11 @@ async function displayCitiesSuggestions() {
 }
 
 function clearCurrentSuggestions() {
-  const suggestionsContainer = document.getElementById("suggestions-container");
-  if (suggestionsContainer) {
-    searchBarContainer.removeChild(suggestionsContainer);
+  if (document.getElementById("suggestions-container")) {
+    searchBarContainer.removeChild(
+      document.getElementById("suggestions-container")
+    );
+    addSearchBarRoundedBottomBorder();
   }
 
   return;
@@ -227,4 +237,14 @@ export function showLoadingAnimation() {
 
 export function hideLoadingAnimation() {
   loading.style.display = "none";
+}
+
+function removeSearchBarRoundedBottomBorder() {
+  searchBarContainer.style.borderBottomLeftRadius = 0;
+  searchBarContainer.style.borderBottomRightRadius = 0;
+}
+
+function addSearchBarRoundedBottomBorder() {
+  searchBarContainer.style.borderBottomLeftRadius = "4px";
+  searchBarContainer.style.borderBottomRightRadius = "4px";
 }
