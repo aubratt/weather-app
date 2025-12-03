@@ -58,10 +58,10 @@ export async function processWeatherData(searchValue) {
   const currentWeather = {
     temp: Math.round(currentConditions.temp),
     feelsLike: Math.round(currentConditions.feelslike),
-    conditionsIcon: currentConditions.icon,
+    conditionsIcon: toCamelCase(currentConditions.icon),
     conditions: currentConditions.conditions,
-    sunrise: currentConditions.sunrise,
-    sunset: currentConditions.sunset,
+    sunrise: formatTime(currentConditions.sunrise),
+    sunset: formatTime(currentConditions.sunset),
     low: Math.round(days[0].tempmin),
     high: Math.round(days[0].tempmax),
     humidity: Math.round(currentConditions.humidity),
@@ -77,7 +77,7 @@ export async function processWeatherData(searchValue) {
   for (let i = 0; i < hours.length; i++) {
     const hour = {
       temp: hours[i].temp,
-      conditionsIcon: hours[i].icon,
+      conditionsIcon: toCamelCase(hours[i].icon),
       precipType: hours[i].preciptype,
       precipProb: Math.round(hours[i].precipprob),
     };
@@ -87,7 +87,7 @@ export async function processWeatherData(searchValue) {
   // Populate ten day weather array
   for (let i = 0; i < 10; i++) {
     const day = {
-      conditionsIcon: days[i].icon,
+      conditionsIcon: toCamelCase(days[i].icon),
       dailyLow: Math.round(days[i].tempmin),
       dailyHigh: Math.round(days[i].tempmax),
       description: days[i].description,
@@ -98,6 +98,33 @@ export async function processWeatherData(searchValue) {
   }
 
   return { currentWeather, hourlyWeather, tenDayWeather };
+}
+
+function toCamelCase(str) {
+  if (typeof str !== "string") {
+    throw new TypeError("Input must be a string");
+  }
+
+  return str
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9 ]+/g, " ")
+    .split(/\s+/)
+    .map((word, index) => {
+      if (index === 0) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join("");
+}
+
+function formatTime(time) {
+  const [h, m] = time.split(":");
+  let hour = Number(h);
+  const suffix = hour >= 12 ? "PM" : "AM";
+
+  hour = hour % 12 || 12;
+
+  return `${hour}:${m} ${suffix}`;
 }
 
 async function getCitiesData() {

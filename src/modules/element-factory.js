@@ -96,16 +96,28 @@ export function createCurrentWeatherSunContainer() {
   return currentWeatherSunContainer;
 }
 
-export function createCurrentWeatherSunrise() {
-  const currentWeatherSunrise = document.createElement("p");
-  currentWeatherSunrise.id = "current-weather-sunrise";
-  return currentWeatherSunrise;
+export function createCurrentWeatherSunriseIcon() {
+  const currentWeatherSunriseIcon = document.createElement("img");
+  currentWeatherSunriseIcon.id = "current-weather-sunrise-icon";
+  return currentWeatherSunriseIcon;
 }
 
-export function createCurrentWeatherSunset() {
-  const currentWeatherSunset = document.createElement("p");
-  currentWeatherSunset.id = "current-weather-sunset";
-  return currentWeatherSunset;
+export function createCurrentWeatherSunriseTime() {
+  const currentWeatherSunriseTime = document.createElement("p");
+  currentWeatherSunriseTime.id = "current-weather-sunrise-time";
+  return currentWeatherSunriseTime;
+}
+
+export function createCurrentWeatherSunsetIcon() {
+  const currentWeatherSunsetIcon = document.createElement("img");
+  currentWeatherSunsetIcon.id = "current-weather-sunset-icon";
+  return currentWeatherSunsetIcon;
+}
+
+export function createCurrentWeatherSunsetTime() {
+  const currentWeatherSunsetTime = document.createElement("p");
+  currentWeatherSunsetTime.id = "current-weather-sunset-time";
+  return currentWeatherSunsetTime;
 }
 
 export function createCurrentWeatherLowHighContainer() {

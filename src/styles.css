@@ -249,13 +249,15 @@ header {
   grid-area: temp;
   display: grid;
   grid-template-rows: 116px 76px;
+  justify-content: end;
+  padding-right: 26px;
 }
 
 #current-weather-temp {
   align-self: end;
   justify-self: center;
-  font-size: 64px;
-  line-height: 64px;
+  font-size: 72px;
+  line-height: 72px;
 }
 
 #current-weather-feels-like {
@@ -264,16 +266,53 @@ header {
 
 #current-weather-conditions-container {
   grid-area: conditions;
+  display: grid;
+  grid-template-rows: 116px 76px;
+  justify-content: start;
+  justify-items: center;
+  padding-left: 38px;
+}
+
+#current-weather-conditions-icon {
+  align-self: center;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%)
+    hue-rotate(110deg) brightness(98%) contrast(108%);
+  width: 96px;
+  height: 96px;
+  padding-top: 32px;
 }
 
 #current-weather-sun-container {
   grid-area: sun;
+  display: grid;
+  align-items: end;
+  grid-template-columns: 24px 176px 24px 176px;
+  padding-bottom: 10px;
+}
+
+#current-weather-sunrise-icon,
+#current-weather-sunset-icon {
+  justify-self: end;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%)
+    hue-rotate(110deg) brightness(98%) contrast(108%);
+}
+
+#current-weather-sunrise-time,
+#current-weather-sunset-time {
+  padding-left: 4px;
 }
 
 #current-weather-low-high-container {
   grid-area: low-high;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
 }
 
-#current-weather-humidity-wind {
+#current-weather-humidity-wind-container {
   grid-area: humidity-wind;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 10px;
 }
+
