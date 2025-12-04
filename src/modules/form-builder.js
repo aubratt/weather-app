@@ -229,6 +229,7 @@ function attachSuggestionListener(suggestionItemContainer, cityData) {
 
   suggestionItemContainer.addEventListener("click", () => {
     clearContent();
+    clearSearchBar();
     displayWeather(searchValue, cityData);
   });
 }
@@ -253,4 +254,8 @@ function addSearchBarRoundedBottomBorder() {
 
 function clearContent() {
   mainContainer.removeChild(document.getElementById("current-weather-container"));
+}
+
+function clearSearchBar() {
+  city.value = "";
 }
