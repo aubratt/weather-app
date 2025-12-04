@@ -154,7 +154,7 @@ header {
 #suggestions-container {
   position: absolute;
   top: 40px;
-  right: calc(50% - 254px);
+  right: calc(50% - 268px);
   background-color: var(--clr-surface-a10);
   border: 1px solid var(--clr-surface-a30);
   border-bottom-left-radius: 4px;
