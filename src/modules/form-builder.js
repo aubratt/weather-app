@@ -4,6 +4,7 @@ import { displayWeather } from "../modules/page-builder.js";
 // TODO Change temperature type button to a dropdown with various
 // types of temperature measurement (F, C, K, R, etc.)
 
+const mainContainer = document.getElementById("main-container");
 const form = document.getElementById("search-form");
 const city = document.getElementById("city");
 const searchBarContainer = document.getElementById("search-bar-container");
@@ -227,6 +228,7 @@ function attachSuggestionListener(suggestionItemContainer, cityData) {
   const searchValue = `${cityData.latitude}, ${cityData.longitude}`;
 
   suggestionItemContainer.addEventListener("click", () => {
+    clearContent();
     displayWeather(searchValue, cityData);
   });
 }
@@ -247,4 +249,8 @@ function removeSearchBarRoundedBottomBorder() {
 function addSearchBarRoundedBottomBorder() {
   searchBarContainer.style.borderBottomLeftRadius = "4px";
   searchBarContainer.style.borderBottomRightRadius = "4px";
+}
+
+function clearContent() {
+  mainContainer.removeChild(document.getElementById("current-weather-container"));
 }

@@ -7,8 +7,6 @@ const mainContainer = document.getElementById("main-container");
 const degreeSymbol = "°";
 
 export async function displayWeather(searchValue, cityData) {
-  // clearContent();
-
   const { currentWeather, hourlyWeather, tenDayWeather } =
     await processWeatherData(searchValue);
 
@@ -16,8 +14,6 @@ export async function displayWeather(searchValue, cityData) {
   displayHourlyWeather(hourlyWeather);
   displayTenDayWeather(tenDayWeather);
 }
-
-function clearContent() {}
 
 function displayCurrentWeather(currentWeather, cityData) {
   const container = element.createCurrentWeatherContainer();
