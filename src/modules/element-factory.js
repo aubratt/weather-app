@@ -157,69 +157,111 @@ export function createCurrentWeatherWind() {
   return currentWeatherWind;
 }
 
-// Hourly Forecast
-export function createHourlyForecastContainer() {
-  const hourlyForecastContainer = document.createElement("div");
-  hourlyForecastContainer.id = "hourly-forecast-container";
-  return hourlyForecastContainer;
+// Hourly Weather
+export function createHourlyWeatherContainer() {
+  const hourlyWeatherContainer = document.createElement("div");
+  hourlyWeatherContainer.id = "hourly-weather-container";
+  return hourlyWeatherContainer;
 }
 
-export function createHourlyForecastHeading() {
-  const hourlyForecastHeading = document.createElement("h3");
-  hourlyForecastHeading.classList.add("section-heading");
-  return hourlyForecastHeading;
+export function createHourlyWeatherHeader() {
+  const hourlyWeatherHeader = document.createElement("div");
+  hourlyWeatherHeader.id = "hourly-weather-header";
+  return hourlyWeatherHeader;
 }
 
-export function createHourRow() {
-  const hourRow = document.createElement("div");
-  hourRow.classList.add("hour-row");
-  return hourRow;
+export function createHourlyWeatherHeading() {
+  const hourlyWeatherHeading = document.createElement("h2");
+  hourlyWeatherHeading.id = "hourly-weather-heading";
+  return hourlyWeatherHeading;
 }
 
-export function createHourTime() {
-  const hourTime = document.createElement("p");
-  hourTime.classList.add("hour-time");
-  return hourTime;
+export function createHourlyWeatherCarousel() {
+  const hourlyWeatherCarousel = document.createElement("div");
+  hourlyWeatherCarousel.id = "hourly-weather-carousel";
+  return hourlyWeatherCarousel;
 }
 
-export function createHourTemp() {
-  const hourTemp = document.createElement("p");
-  hourTemp.classList.add("hour-temp");
-  return hourTemp;
+export function createHourlyWeatherLeftArrowContainer() {
+  const hourlyWeatherLeftArrowContainer = document.createElement("button");
+  hourlyWeatherLeftArrowContainer.id = "hourly-weather-left-arrow-container";
+  return hourlyWeatherLeftArrowContainer;
 }
 
-export function createHourConditionsContainer() {
-  const hourConditionsContainer = document.createElement("div");
-  hourConditionsContainer.classList.add("hour-conditions-container");
-  return hourConditionsContainer;
+export function createHourlyWeatherLeftArrowIcon() {
+  const hourlyWeatherLeftArrowIcon = document.createElement("img");
+  hourlyWeatherLeftArrowIcon.id = "hourly-weather-left-arrow-icon";
+  return hourlyWeatherLeftArrowIcon;
 }
 
-export function createHourConditionsIcon() {
-  const hourConditionsIcon = document.createElement("svg");
-  hourConditionsIcon.classList.add("hour-conditions-icon");
-  return hourConditionsIcon;
+export function createHourlyWeatherHourContainer() {
+  const hourlyWeatherHourContainer = document.createElement("div");
+  hourlyWeatherHourContainer.classList.add("hourly-weather-hour-container");
+  return hourlyWeatherHourContainer;
 }
 
-export function createHourConditionsText() {
-  const hourConditionsText = document.createElement("p");
-  hourConditionsText.classList.add("hour-conditions-text");
-  return hourConditionsText;
+export function createHourlyWeatherTimeContainer() {
+  const hourlyWeatherTimeContainer = document.createElement("div");
+  hourlyWeatherTimeContainer.classList.add("hourly-weather-time-container");
+  return hourlyWeatherTimeContainer;
 }
 
-export function createHourPrecipitationContainer() {
-  const hourPrecipitationContainer = document.createElement("div");
-  hourPrecipitationContainer.classList.add("hour-precipitation-container");
-  return hourPrecipitationContainer;
+export function createHourlyWeatherTime() {
+  const hourlyWeatherTime = document.createElement("p");
+  hourlyWeatherTime.classList.add("hourly-weather-time");
+  return hourlyWeatherTime;
 }
 
-export function createHourPrecipitationIcon() {
-  const hourPrecipitationIcon = document.createElement("svg");
-  hourPrecipitationIcon.classList.add("hour-precipitation-icon");
-  return hourPrecipitationIcon;
+export function createHourlyWeatherConditionsIconContainer() {
+  const hourlyWeatherConditionsIconContainer = document.createElement("div");
+  hourlyWeatherConditionsIconContainer.classList.add("hourly-weather-conditions-icon-container");
+  return hourlyWeatherConditionsIconContainer;
 }
 
-export function createHourPrecipitationText() {
-  const hourPrecipitationText = document.createElement("p");
-  hourPrecipitationText.classList.add("hour-precipitation-text");
-  return hourPrecipitationText;
+export function createHourlyWeatherConditionsIcon() {
+  const hourlyWeatherConditionsIcon = document.createElement("img");
+  hourlyWeatherConditionsIcon.classList.add("hourly-weather-conditions-icon");
+  return hourlyWeatherConditionsIcon;
+}
+
+export function createHourlyWeatherTempContainer() {
+  const hourlyWeatherTempContainer = document.createElement("div");
+  hourlyWeatherTempContainer.classList.add("hourly-weather-temp-container");
+  return hourlyWeatherTempContainer;
+}
+
+export function createHourlyWeatherTemp() {
+  const hourlyWeatherTemp = document.createElement("p");
+  hourlyWeatherTemp.classList.add("hourly-weather-temp");
+  return hourlyWeatherTemp;
+}
+
+export function createHourlyWeatherPrecipProbContainer() {
+  const hourlyWeatherPrecipProbContainer = document.createElement("div");
+  hourlyWeatherPrecipProbContainer.classList.add("hourly-weather-precip-prob-container");
+  return hourlyWeatherPrecipProbContainer;
+}
+
+export function createHourlyWeatherPrecipIcon() {
+  const hourlyWeatherPrecipIcon = document.createElement("img");
+  hourlyWeatherPrecipIcon.classList.add("hourly-weather-precip-icon");
+  return hourlyWeatherPrecipIcon;
+}
+
+export function createHourlyWeatherPrecipProb() {
+  const hourlyWeatherPrecipProb = document.createElement("p");
+  hourlyWeatherPrecipProb.classList.add("hourly-weather-precip-prob");
+  return hourlyWeatherPrecipProb;
+}
+
+export function createHourlyWeatherRightArrowContainer() {
+  const hourlyWeatherRightArrowContainer = document.createElement("button");
+  hourlyWeatherRightArrowContainer.id = "hourly-weather-right-arrow-container";
+  return hourlyWeatherRightArrowContainer;
+}
+
+export function createHourlyWeatherRightArrowIcon() {
+  const hourlyWeatherRightArrowIcon = document.createElement("img");
+  hourlyWeatherRightArrowIcon.id = "hourly-weather-right-arrow-icon";
+  return hourlyWeatherRightArrowIcon;
 }

@@ -68,13 +68,14 @@ export async function processWeatherData(searchValue) {
     feelsLike: Math.round(currentConditions.feelslike),
     conditionsIcon: toCamelCase(currentConditions.icon),
     conditions: currentConditions.conditions,
-    sunrise: formatTime(currentConditions.sunrise),
-    sunset: formatTime(currentConditions.sunset),
+    sunrise: currentConditions.sunrise,
+    sunset: currentConditions.sunset,
     low: Math.round(days[0].tempmin),
     high: Math.round(days[0].tempmax),
     humidity: Math.round(currentConditions.humidity),
-    windDirection: currentConditions.windDirection,
-    windSpeed: currentConditions.windSpeed,
+    windDirection: formatWindDirection(currentConditions.winddir),
+    windSpeed: Math.round(currentConditions.windspeed),
+    currentTime: currentConditions.datetime,
   };
 
   const hourlyWeather = [];
@@ -84,7 +85,8 @@ export async function processWeatherData(searchValue) {
   // Populate hourly weather array
   for (let i = 0; i < hours.length; i++) {
     const hour = {
-      temp: hours[i].temp,
+      time: hours[i].datetime,
+      temp: Math.round(hours[i].temp),
       conditionsIcon: toCamelCase(hours[i].icon),
       precipType: hours[i].preciptype,
       precipProb: Math.round(hours[i].precipprob),
@@ -125,14 +127,13 @@ function toCamelCase(str) {
     .join("");
 }
 
-function formatTime(time) {
-  const [h, m] = time.split(":");
-  let hour = Number(h);
-  const suffix = hour >= 12 ? "PM" : "AM";
+function formatWindDirection(degrees) {
+  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
-  hour = hour % 12 || 12;
+  degrees = (degrees * 8) / 360;
+  degrees = Math.round(degrees);
 
-  return `${hour}:${m} ${suffix}`;
+  return directions[degrees];
 }
 
 async function getCitiesData() {
@@ -253,7 +254,12 @@ function addSearchBarRoundedBottomBorder() {
 }
 
 function clearContent() {
-  mainContainer.removeChild(document.getElementById("current-weather-container"));
+  mainContainer.removeChild(
+    document.getElementById("current-weather-container")
+  );
+  mainContainer.removeChild(
+    document.getElementById("hourly-weather-container")
+  );
 }
 
 function clearSearchBar() {
