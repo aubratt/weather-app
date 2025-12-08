@@ -95,8 +95,6 @@ function displayCurrentWeather(currentWeather, cityData) {
 const numberOfVisibleHours = 10;
 
 function displayHourlyWeather(hourlyWeather, currentWeather) {
-  console.log(hourlyWeather);
-
   const container = element.createHourlyWeatherContainer();
   const header = element.createHourlyWeatherHeader();
   const heading = element.createHourlyWeatherHeading();
@@ -307,4 +305,84 @@ function enableRightArrow() {
   icon.classList.remove("disabled");
 }
 
-function displayTenDayWeather(tenDayWeather) {}
+function displayTenDayWeather(tenDayWeather) {
+  console.log(tenDayWeather);
+
+  const container = element.createTenDayWeatherContainer();
+  const header = element.createTenDayWeatherHeader();
+  const heading = element.createTenDayWeatherHeading();
+  const schedule = element.createTenDayWeatherSchedule();
+
+  heading.textContent = "10-DAY WEATHER";
+
+  mainContainer.appendChild(container);
+
+  container.appendChild(header);
+  container.appendChild(schedule);
+
+  header.appendChild(heading);
+
+  for (let i = 0; i < 10; i++) {
+    const row = element.createTenDayWeatherRow();
+    const dayContainer = element.createTenDayWeatherDayContainer();
+    const weekdayText = element.createTenDayWeatherWeekdayText();
+    const dateText = element.createTenDayWeatherDateText();
+    const condsIconContainer =
+      element.createTenDayWeatherConditionsIconContainer();
+    const condsIcon = element.createTenDayWeatherConditionsIcon();
+    const lowHighContainer = element.createTenDayWeatherLowHighContainer();
+    const lowText = element.createTenDayWeatherLowText();
+    const highText = element.createTenDayWeatherHighText();
+    const condsDescContainer = element.createTenDayWeatherCondsDescContainer();
+    const condsDescText = element.createTenDayWeatherCondsDescText();
+    const precipContainer = element.createTenDayWeatherPrecipContainer();
+    const precipIcon = element.createTenDayWeatherPrecipIcon();
+    const precipText = element.createTenDayWeatherPrecipText();
+
+    const weekdayNumber = new Date(tenDayWeather[i].date).getUTCDay();
+    const weekdayName = getWeekdayName(weekdayNumber);
+    const date = formatTenDayDate(tenDayWeather[i].date);
+
+    weekdayText.textContent = weekdayName;
+    dateText.textContent = date;
+    condsIcon.src = icon[tenDayWeather[i].conditionsIcon];
+    lowText.textContent = `L: ${tenDayWeather[i].dailyLow}${degreeSymbol}`;
+    highText.textContent = `H: ${tenDayWeather[i].dailyHigh}${degreeSymbol}`;
+    condsDescText.textContent = tenDayWeather[i].description;
+    precipIcon.src = icon.waterDrop;
+    precipText.textContent = tenDayWeather[i].precipProb + "%";
+
+    schedule.appendChild(row);
+
+    row.appendChild(dayContainer);
+    row.appendChild(condsIconContainer);
+    row.appendChild(lowHighContainer);
+    row.appendChild(condsDescContainer);
+    row.appendChild(precipContainer);
+
+    dayContainer.appendChild(weekdayText);
+    dayContainer.appendChild(dateText);
+
+    condsIconContainer.appendChild(condsIcon);
+
+    lowHighContainer.appendChild(lowText);
+    lowHighContainer.appendChild(highText);
+
+    condsDescContainer.appendChild(condsDescText);
+
+    precipContainer.appendChild(precipIcon);
+    precipContainer.appendChild(precipText);
+  }
+}
+
+function getWeekdayName(weekdayNumber) {
+  const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  return weekdays[weekdayNumber];
+}
+
+function formatTenDayDate(date) {
+  let [y, m, d] = date.split("-");
+  if (d[0] === "0") d = d.slice(1, 2);
+
+  return `${m}/${d}`;
+}

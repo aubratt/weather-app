@@ -23,5 +23,5 @@ export { default as thunder } from "./thunder.svg";
 export { default as thunderRain } from "./thunder-rain.svg";
 export { default as thunderShowersDay } from "./thunder-showers-day.svg";
 export { default as thunderShowersNight } from "./thunder-showers-night.svg";
-export { default as waterDrop } from "./water-drop.svg";
+export { default as waterDrop } from "./water-drop.png";
 export { default as wind } from "./wind.svg";

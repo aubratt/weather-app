@@ -94,15 +94,19 @@ export async function processWeatherData(searchValue) {
     hourlyWeather.push(hour);
   }
 
+  console.log(days);
+
   // Populate ten day weather array
   for (let i = 0; i < 10; i++) {
     const day = {
       conditionsIcon: toCamelCase(days[i].icon),
       dailyLow: Math.round(days[i].tempmin),
       dailyHigh: Math.round(days[i].tempmax),
+      date: days[i].datetime,
       description: days[i].description,
       precipType: days[i].preciptype,
-      precipProb: days[i].precipprob,
+      precipProb: Math.round(days[i].precipprob),
+      timezone: weatherData.timezone,
     };
     tenDayWeather.push(day);
   }
@@ -259,6 +263,9 @@ function clearContent() {
   );
   mainContainer.removeChild(
     document.getElementById("hourly-weather-container")
+  );
+  mainContainer.removeChild(
+    document.getElementById("ten-day-weather-container")
   );
 }
 

@@ -376,7 +376,7 @@ header {
 
 #hourly-weather-left-arrow-icon.disabled,
 #hourly-weather-right-arrow-icon.disabled {
-    filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(1092%)
+  filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(1092%)
     hue-rotate(221deg) brightness(78%) contrast(92%);
 }
 
@@ -403,13 +403,124 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2px;
 }
 
 .hourly-weather-precip-icon {
-  width: 14px;
-  height: 14px;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%)
+    hue-rotate(110deg) brightness(98%) contrast(108%);
+  width: 12px;
+  height: 12px;
 }
 
 .hourly-weather-precip-prob {
   font-size: 14px;
+}
+
+/* 10-DAY WEATHER */
+#ten-day-weather-container {
+  display: grid;
+  grid-template: 36px 800px / 800px;
+  background-color: var(--clr-surface-a10);
+  border: 1px solid var(--clr-surface-a30);
+  border-radius: 8px;
+  line-height: 1;
+  margin-top: 7px;
+  margin-bottom: 16px;
+}
+
+#ten-day-weather-header {
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--clr-surface-a30);
+  font-weight: bold;
+  margin: 0 12px;
+}
+
+#ten-day-weather-heading {
+  font-size: 14px;
+}
+
+#ten-day-weather-schedule {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  margin: 0 12px;
+}
+
+#ten-day-weather-schedule :last-child {
+  border-bottom: none;
+}
+
+.ten-day-weather-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--clr-surface-a30);
+  padding: 0 16px;
+}
+
+.ten-day-weather-day-container,
+.ten-day-weather-conditions-icon-container,
+.ten-day-weather-low-high-container,
+.ten-day-weather-conds-desc-container,
+.ten-day-weather-precip-container {
+  display: grid;
+  align-items: center;
+}
+
+.ten-day-weather-day-container {
+  text-align: center;
+  width: 38px;
+}
+
+.ten-day-weather-weekday-text {
+  align-self: end;
+}
+
+.ten-day-weather-date-text {
+  align-self: start;
+  color: var(--clr-dim-a0);
+  font-size: 14px;
+}
+
+.ten-day-weather-conditions-icon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%)
+    hue-rotate(110deg) brightness(98%) contrast(108%);
+  width: 48px;
+  height: 48px;
+}
+
+.ten-day-weather-low-high-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  text-align: center;
+  width: 125px;
+}
+
+.ten-day-weather-conds-desc-container {
+  width: 250px;
+}
+
+.ten-day-weather-conds-desc-text {
+  font-size: 14px;
+}
+
+.ten-day-weather-precip-container {
+  justify-self: end;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  width: 70px;
+}
+
+.ten-day-weather-precip-icon {
+  justify-self: end;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%)
+    hue-rotate(110deg) brightness(98%) contrast(108%);
+  width: 12px;
+  height: 12px;
+}
+
+.ten-day-weather-precip-text {
+  justify-self: end;
 }
