@@ -63,12 +63,20 @@ export function createCurrentWeatherTempContainer() {
 export function createCurrentWeatherTemp() {
   const currentWeatherTemp = document.createElement("p");
   currentWeatherTemp.id = "current-weather-temp";
+  currentWeatherTemp.classList.add("temp-value");
   return currentWeatherTemp;
+}
+
+export function createCurrentWeatherFeelsLikeSpan() {
+  const currentWeatherFeelsLikeSpan = document.createElement("span");
+  currentWeatherFeelsLikeSpan.id = "current-weather-feels-like-span";
+  return currentWeatherFeelsLikeSpan;
 }
 
 export function createCurrentWeatherFeelsLike() {
   const currentWeatherFeelsLike = document.createElement("p");
   currentWeatherFeelsLike.id = "current-weather-feels-like";
+  currentWeatherFeelsLike.classList.add("temp-value");
   return currentWeatherFeelsLike;
 }
 
@@ -126,15 +134,27 @@ export function createCurrentWeatherLowHighContainer() {
   return currentWeatherLowHighContainer;
 }
 
+export function createCurrentWeatherLowSpan() {
+  const currentWeatherLowSpan = document.createElement("span");
+  return currentWeatherLowSpan;
+}
+
 export function createCurrentWeatherLow() {
   const currentWeatherLow = document.createElement("p");
   currentWeatherLow.id = "current-weather-low";
+  currentWeatherLow.classList.add("temp-value");
   return currentWeatherLow;
+}
+
+export function createCurrentWeatherHighSpan() {
+  const currentWeatherHighSpan = document.createElement("span");
+  return currentWeatherHighSpan;
 }
 
 export function createCurrentWeatherHigh() {
   const currentWeatherHigh = document.createElement("p");
   currentWeatherHigh.id = "current-weather-high";
+  currentWeatherHigh.classList.add("temp-value");
   return currentWeatherHigh;
 }
 
@@ -234,7 +254,7 @@ export function createHourlyWeatherTempContainer() {
 
 export function createHourlyWeatherTemp() {
   const hourlyWeatherTemp = document.createElement("p");
-  hourlyWeatherTemp.classList.add("hourly-weather-temp");
+  hourlyWeatherTemp.classList.add("hourly-weather-temp", "temp-value");
   return hourlyWeatherTemp;
 }
 
@@ -303,9 +323,7 @@ export function createTenDayWeatherRow() {
 
 export function createTenDayWeatherDayContainer() {
   const tenDayWeatherDayContainer = document.createElement("div");
-  tenDayWeatherDayContainer.classList.add(
-    "ten-day-weather-day-container"
-  );
+  tenDayWeatherDayContainer.classList.add("ten-day-weather-day-container");
   return tenDayWeatherDayContainer;
 }
 
@@ -323,7 +341,9 @@ export function createTenDayWeatherDateText() {
 
 export function createTenDayWeatherConditionsIconContainer() {
   const tenDayWeatherConditionsIconContainer = document.createElement("div");
-  tenDayWeatherConditionsIconContainer.classList.add("ten-day-weather-conditions-icon-container");
+  tenDayWeatherConditionsIconContainer.classList.add(
+    "ten-day-weather-conditions-icon-container"
+  );
   return tenDayWeatherConditionsIconContainer;
 }
 
@@ -335,25 +355,42 @@ export function createTenDayWeatherConditionsIcon() {
 
 export function createTenDayWeatherLowHighContainer() {
   const tenDayWeatherLowHighContainer = document.createElement("div");
-  tenDayWeatherLowHighContainer.classList.add("ten-day-weather-low-high-container");
+  tenDayWeatherLowHighContainer.classList.add(
+    "ten-day-weather-low-high-container"
+  );
   return tenDayWeatherLowHighContainer;
+}
+
+export function createTenDayWeatherLowSpan() {
+  const tenDayWeatherLowSpan = document.createElement("span");
+  return tenDayWeatherLowSpan;
 }
 
 export function createTenDayWeatherLowText() {
   const tenDayWeatherLowText = document.createElement("p");
-  tenDayWeatherLowText.classList.add("ten-day-weather-low-text");
+  tenDayWeatherLowText.classList.add("ten-day-weather-low-text", "temp-value");
   return tenDayWeatherLowText;
+}
+
+export function createTenDayWeatherHighSpan() {
+  const tenDayWeatherHighSpan = document.createElement("span");
+  return tenDayWeatherHighSpan;
 }
 
 export function createTenDayWeatherHighText() {
   const tenDayWeatherHighText = document.createElement("p");
-  tenDayWeatherHighText.classList.add("ten-day-weather-high-text");
+  tenDayWeatherHighText.classList.add(
+    "ten-day-weather-high-text",
+    "temp-value"
+  );
   return tenDayWeatherHighText;
 }
 
 export function createTenDayWeatherCondsDescContainer() {
   const tenDayWeatherCondsDescContainer = document.createElement("div");
-  tenDayWeatherCondsDescContainer.classList.add("ten-day-weather-conds-desc-container");
+  tenDayWeatherCondsDescContainer.classList.add(
+    "ten-day-weather-conds-desc-container"
+  );
   return tenDayWeatherCondsDescContainer;
 }
 
@@ -365,7 +402,9 @@ export function createTenDayWeatherCondsDescText() {
 
 export function createTenDayWeatherPrecipContainer() {
   const tenDayWeatherPrecipContainer = document.createElement("div");
-  tenDayWeatherPrecipContainer.classList.add("ten-day-weather-precip-container");
+  tenDayWeatherPrecipContainer.classList.add(
+    "ten-day-weather-precip-container"
+  );
   return tenDayWeatherPrecipContainer;
 }
 
@@ -380,4 +419,3 @@ export function createTenDayWeatherPrecipText() {
   tenDayWeatherPrecipText.classList.add("ten-day-weather-precip-text");
   return tenDayWeatherPrecipText;
 }
-

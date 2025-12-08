@@ -23,6 +23,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
+// SEARCH BAR
 function handleUserInteraction() {
   showLoadingAnimation();
   clearTimeout(debounceTimeout);
@@ -271,4 +272,43 @@ function clearContent() {
 
 function clearSearchBar() {
   city.value = "";
+}
+
+// TEMP UNIT SELECTOR
+const tempUnit = document.getElementById("temp-unit");
+
+const celsius = "c";
+const fahrenheit = "f";
+const degreeSymbol = "°";
+
+tempUnit.addEventListener("change", changeTempUnit);
+
+function changeTempUnit() {
+  const newTempUnit = tempUnit.value;
+  const tempValues = document.querySelectorAll(".temp-value");
+
+  if (newTempUnit === celsius) {
+    tempValues.forEach((tempValue) => {
+      const newTemp = tempValue.dataset.ctemp;
+      displayNewTemp(tempValue, newTemp);
+    });
+  } else {
+    tempValues.forEach((tempValue) => {
+      const newTemp = tempValue.dataset.ftemp;
+      displayNewTemp(tempValue, newTemp);
+    });
+  }
+}
+
+function displayNewTemp(tempElement, newTemp) {
+  const firstChild = tempElement.firstChild;
+
+  if (firstChild && firstChild.tagName === "SPAN") {
+    let tempNode = tempElement.childNodes[1];
+    tempNode.textContent = newTemp + degreeSymbol;
+
+    return;
+  }
+
+  tempElement.textContent = newTemp + degreeSymbol;
 }

@@ -22,6 +22,7 @@ function displayCurrentWeather(currentWeather, cityData) {
   const cityEl = element.createCurrentWeatherCity();
   const tempContainer = element.createCurrentWeatherTempContainer();
   const temp = element.createCurrentWeatherTemp();
+  const feelsLikeSpan = element.createCurrentWeatherFeelsLikeSpan();
   const feelsLike = element.createCurrentWeatherFeelsLike();
   const conditionsContainer = element.createCurrentWeatherConditionsContainer();
   const conditionsIcon = element.createCurrentWeatherConditionsIcon();
@@ -32,7 +33,9 @@ function displayCurrentWeather(currentWeather, cityData) {
   const sunsetIcon = element.createCurrentWeatherSunsetIcon();
   const sunsetTime = element.createCurrentWeatherSunsetTime();
   const lowHighContainer = element.createCurrentWeatherLowHighContainer();
+  const lowSpan = element.createCurrentWeatherLowSpan();
   const low = element.createCurrentWeatherLow();
+  const highSpan = element.createCurrentWeatherHighSpan();
   const high = element.createCurrentWeatherHigh();
   const humidityWindContainer =
     element.createCurrentWeatherHumidityWindContainer();
@@ -50,15 +53,29 @@ function displayCurrentWeather(currentWeather, cityData) {
   heading.textContent = "CURRENT WEATHER";
   cityEl.textContent = `${cityData.city.toUpperCase()}, ${cityData.region.toUpperCase()}`;
   temp.textContent = currentWeather.temp + degreeSymbol;
-  feelsLike.textContent = `feelsLike ${currentWeather.feelsLike}${degreeSymbol}`;
+  temp.setAttribute("data-ftemp", currentWeather.temp);
+  temp.setAttribute("data-ctemp", convertToCelsius(currentWeather.temp));
+  feelsLikeSpan.textContent = "feelsLike ";
+  feelsLike.textContent = `${currentWeather.feelsLike}${degreeSymbol}`;
+  feelsLike.setAttribute("data-ftemp", currentWeather.feelsLike);
+  feelsLike.setAttribute(
+    "data-ctemp",
+    convertToCelsius(currentWeather.feelsLike)
+  );
   conditionsIcon.src = icon[currentWeather.conditionsIcon];
   conditionsText.textContent = currentWeather.conditions;
   sunriseIcon.src = icon.sunrise;
   sunriseTime.textContent = formatTime(currentWeather.sunrise, true);
   sunsetIcon.src = icon.sunset;
   sunsetTime.textContent = formatTime(currentWeather.sunset, true);
-  low.textContent = `Low: ${currentWeather.low}${degreeSymbol}`;
-  high.textContent = `High: ${currentWeather.high}${degreeSymbol}`;
+  lowSpan.textContent = "Low: ";
+  low.textContent = `${currentWeather.low}${degreeSymbol}`;
+  low.setAttribute("data-ftemp", currentWeather.low);
+  low.setAttribute("data-ctemp", convertToCelsius(currentWeather.low));
+  highSpan.textContent = "High: ";
+  high.textContent = `${currentWeather.high}${degreeSymbol}`;
+  high.setAttribute("data-ftemp", currentWeather.high);
+  high.setAttribute("data-ctemp", convertToCelsius(currentWeather.high));
   humidity.textContent = `Humidity: ${currentWeather.humidity}%`;
   wind.textContent = `Wind: ${currentWeather.windSpeed} mph ${currentWeather.windDirection}`;
 
@@ -76,6 +93,7 @@ function displayCurrentWeather(currentWeather, cityData) {
 
   tempContainer.appendChild(temp);
   tempContainer.appendChild(feelsLike);
+  feelsLike.insertBefore(feelsLikeSpan, feelsLike.firstChild);
 
   conditionsContainer.appendChild(conditionsIcon);
   conditionsContainer.appendChild(conditionsText);
@@ -86,7 +104,9 @@ function displayCurrentWeather(currentWeather, cityData) {
   sunContainer.appendChild(sunsetTime);
 
   lowHighContainer.appendChild(low);
+  low.insertBefore(lowSpan, low.firstChild);
   lowHighContainer.appendChild(high);
+  high.insertBefore(highSpan, high.firstChild);
 
   humidityWindContainer.appendChild(humidity);
   humidityWindContainer.appendChild(wind);
@@ -143,6 +163,8 @@ function displayHourlyWeather(hourlyWeather, currentWeather) {
     time.textContent = formatTime(hourlyWeather[i].time, false);
     conditionsIcon.src = icon[hourlyWeather[i].conditionsIcon];
     temp.textContent = hourlyWeather[i].temp + degreeSymbol;
+    temp.setAttribute("data-ftemp", hourlyWeather[i].temp);
+    temp.setAttribute("data-ctemp", convertToCelsius(hourlyWeather[i].temp));
     precipIcon.src = icon.waterDrop;
     precipProb.textContent = hourlyWeather[i].precipProb + "%";
 
@@ -331,7 +353,9 @@ function displayTenDayWeather(tenDayWeather) {
       element.createTenDayWeatherConditionsIconContainer();
     const condsIcon = element.createTenDayWeatherConditionsIcon();
     const lowHighContainer = element.createTenDayWeatherLowHighContainer();
+    const lowSpan = element.createTenDayWeatherLowSpan();
     const lowText = element.createTenDayWeatherLowText();
+    const highSpan = element.createTenDayWeatherHighSpan();
     const highText = element.createTenDayWeatherHighText();
     const condsDescContainer = element.createTenDayWeatherCondsDescContainer();
     const condsDescText = element.createTenDayWeatherCondsDescText();
@@ -346,8 +370,20 @@ function displayTenDayWeather(tenDayWeather) {
     weekdayText.textContent = weekdayName;
     dateText.textContent = date;
     condsIcon.src = icon[tenDayWeather[i].conditionsIcon];
-    lowText.textContent = `L: ${tenDayWeather[i].dailyLow}${degreeSymbol}`;
-    highText.textContent = `H: ${tenDayWeather[i].dailyHigh}${degreeSymbol}`;
+    lowSpan.textContent = "L: ";
+    lowText.textContent = tenDayWeather[i].dailyLow + degreeSymbol;
+    lowText.setAttribute("data-ftemp", tenDayWeather[i].dailyLow);
+    lowText.setAttribute(
+      "data-ctemp",
+      convertToCelsius(tenDayWeather[i].dailyLow)
+    );
+    highSpan.textContent = "H: ";
+    highText.textContent = tenDayWeather[i].dailyHigh + degreeSymbol;
+    highText.setAttribute("data-ftemp", tenDayWeather[i].dailyHigh);
+    highText.setAttribute(
+      "data-ctemp",
+      convertToCelsius(tenDayWeather[i].dailyHigh)
+    );
     condsDescText.textContent = tenDayWeather[i].description;
     precipIcon.src = icon.waterDrop;
     precipText.textContent = tenDayWeather[i].precipProb + "%";
@@ -366,7 +402,9 @@ function displayTenDayWeather(tenDayWeather) {
     condsIconContainer.appendChild(condsIcon);
 
     lowHighContainer.appendChild(lowText);
+    lowText.insertBefore(lowSpan, lowText.firstChild);
     lowHighContainer.appendChild(highText);
+    highText.insertBefore(highSpan, highText.firstChild);
 
     condsDescContainer.appendChild(condsDescText);
 
@@ -385,4 +423,8 @@ function formatTenDayDate(date) {
   if (d[0] === "0") d = d.slice(1, 2);
 
   return `${m}/${d}`;
+}
+
+function convertToCelsius(fTemp) {
+  return Math.round((5 / 9) * (Number(fTemp) - 32));
 }
