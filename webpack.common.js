@@ -15,18 +15,19 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
+
   module: {
     rules: [
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.html$/i,
+        test: /\.html$/,
         loader: "html-loader",
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         type: "asset/resource",
       },
     ],
